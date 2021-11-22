@@ -8,11 +8,18 @@ format long
 %---------------------------------------------------------------------------
 data = [];
 classification= [];
-for v = 1:160
-    if v >= 1 && v <=80
-        im = imread(strcat('D:\Workspace\Matlab_workpace\MatLab_project\KiThuatNhanDang\Project_final\data\gray_chili_onion\g',num2str(v), '.jpg'));
+for v = 1:400
+    if v >= 1 && v <= 80
+        im = imread(strcat('dataSet\gray_WhiteBackGround\g',num2str(v), '.jpg'));
+    elseif v > 80 && v <= 160
+%         im = imread(strcat('dataSet\gray_WhiteBackGround\g',num2str(20 + v), '.jpg'));
+        continue;
+    elseif v > 160 && v <= 240
+        im = imread(strcat('dataSet\gray_WhiteBackGround\g',num2str(40 + v), '.jpg'));
+    elseif v > 240 && v <= 320
+        im = imread(strcat('dataSet\gray_WhiteBackGround\g',num2str(60 + v), '.jpg'));
     else
-        im = imread(strcat('D:\Workspace\Matlab_workpace\MatLab_project\KiThuatNhanDang\Project_final\data\gray_chili_onion\g',num2str(320 + v), '.jpg'));
+        im = imread(strcat('dataSet\gray_WhiteBackGround\g',num2str(80 + v), '.jpg'));
     end
 
     

@@ -22,7 +22,7 @@ function varargout = classification_GUI(varargin)
 
 % Edit the above text to modify the response to help classification_GUI
 
-% Last Modified by GUIDE v2.5 20-Nov-2021 14:10:36
+% Last Modified by GUIDE v2.5 21-Nov-2021 22:38:45
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -171,12 +171,12 @@ function Upload_Callback(hObject, eventdata, handles)
            
     end
     
-    if ordina_display == numOfFile & numOfFile ~= 1
+    if ordina_display == numOfFile && numOfFile ~= 1
         set(handles.Next, 'Visible', 'off');
         set(handles.Previous, 'Visible', 'on');
     end
         
-    if ordina_display == 1 & numOfFile ~= 1
+    if ordina_display == 1 && numOfFile ~= 1
         set(handles.Next, 'Visible', 'on');
         set(handles.Previous, 'Visible', 'off');
     end
@@ -223,6 +223,15 @@ function Upload_Callback(hObject, eventdata, handles)
     
     if numOfFile > 0
         set(handles.Upload, 'Visible', 'off');
+        set(handles.InputOnion, 'Visible', 'off');
+        set(handles.InputGinger, 'Visible', 'off');
+        set(handles.InputStarAnise, 'Visible', 'off');
+        set(handles.InputLemongrass, 'Visible', 'off');
+        set(handles.InputChili, 'Visible', 'off');
+        set(handles.Type, 'Visible', 'off');
+        set(handles.Explain, 'Visible', 'off');
+        
+        
         set(handles.Classification, 'Visible', 'on');
         
         display_Image(fullname, handles);
@@ -361,7 +370,9 @@ function Classification_Callback(hObject, eventdata, handles)
         end
 
         %normlize histogram 16x16
-        for in = 1: 160
+        [m,n] = size(trainData);
+        for in = 1: m/105
+            
             all_distance = [all_distance distance(trainData((105 * in - 104):105*in ,:), his_norm)];
         end
     end
@@ -387,7 +398,7 @@ function Classification_Callback(hObject, eventdata, handles)
         end
     
     %count amount of gingerresult in which class has more
-    k_mins = minIndex(1:3);
+    k_mins = minIndex(1:5);
     chili = 0;
     onion = 0;
     lemonGrass = 0;
@@ -395,7 +406,7 @@ function Classification_Callback(hObject, eventdata, handles)
     starAnise = 0;
     
     % 1-Ot  2-Hanh tay
-    for iter = 1 : 3
+    for iter = 1 : 5
         if k_mins(1,iter) >= 1 && k_mins(1,iter) <= 80
             chili = chili + 1;
         elseif k_mins(1,iter) >= 101 && k_mins(1,iter) <= 180
@@ -546,6 +557,13 @@ function TestAgain_Callback(hObject, eventdata, handles)
    
     
     set(handles.Upload,'Visible', 'on');
+    set(handles.InputOnion, 'Visible', 'on');
+    set(handles.InputGinger, 'Visible', 'on');
+    set(handles.InputStarAnise, 'Visible', 'on');
+    set(handles.InputLemongrass, 'Visible', 'on');
+    set(handles.InputChili, 'Visible', 'on');
+    set(handles.Type, 'Visible', 'on');
+    set(handles.Explain, 'Visible', 'on');
     
 
 
@@ -554,3 +572,195 @@ function TotalOfGinger_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to TotalOfGinger (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
+
+
+function InputOnion_Callback(hObject, eventdata, handles)
+% hObject    handle to InputOnion (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of InputOnion as text
+%        str2double(get(hObject,'String')) returns contents of InputOnion as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function InputOnion_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InputOnion (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function InputChili_Callback(hObject, eventdata, handles)
+% hObject    handle to InputChili (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of InputChili as text
+%        str2double(get(hObject,'String')) returns contents of InputChili as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function InputChili_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InputChili (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function InputLemongrass_Callback(hObject, eventdata, handles)
+% hObject    handle to InputLemongrass (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of InputLemongrass as text
+%        str2double(get(hObject,'String')) returns contents of InputLemongrass as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function InputLemongrass_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InputLemongrass (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function InputStarAnise_Callback(hObject, eventdata, handles)
+% hObject    handle to InputStarAnise (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of InputStarAnise as text
+%        str2double(get(hObject,'String')) returns contents of InputStarAnise as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function InputStarAnise_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InputStarAnise (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function InputGinger_Callback(hObject, eventdata, handles)
+% hObject    handle to InputGinger (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of InputGinger as text
+%        str2double(get(hObject,'String')) returns contents of InputGinger as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function InputGinger_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InputGinger (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in SelectMethod.
+function SelectMethod_Callback(hObject, eventdata, handles)
+% hObject    handle to SelectMethod (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns SelectMethod contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from SelectMethod
+
+
+% --- Executes during object creation, after setting all properties.
+function SelectMethod_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to SelectMethod (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function InputK_Callback(hObject, eventdata, handles)
+% hObject    handle to InputK (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of InputK as text
+%        str2double(get(hObject,'String')) returns contents of InputK as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function InputK_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to InputK (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in Train.
+function Train_Callback(hObject, eventdata, handles)
+% hObject    handle to Train (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in Test.
+function Test_Callback(hObject, eventdata, handles)
+    set(handles.Upload,'Visible', 'on');
+    set(handles.InputOnion, 'Visible', 'on');
+    set(handles.InputGinger, 'Visible', 'on');
+    set(handles.InputStarAnise, 'Visible', 'on');
+    set(handles.InputLemongrass, 'Visible', 'on');
+    set(handles.InputChili, 'Visible', 'on');
+    set(handles.Type, 'Visible', 'on');
+    set(handles.Explain, 'Visible', 'on');
+    
+    
+    set(handles.Test,'Visible', 'off');
+    set(handles.Train, 'Visible', 'off');
+    set(handles.Method, 'Visible', 'off');
+    set(handles.KValue, 'Visible', 'off');
+    set(handles.WarmUp, 'Visible', 'off');
+    set(handles.ModelGoal, 'Visible', 'off');
+    set(handles.InputK, 'Visible', 'off');
+    set(handles.SelectMethod, 'Visible', 'off');
+    
+    
