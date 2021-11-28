@@ -1,7 +1,7 @@
 function [vector] = HOG_vector(cell, Gabs, Gtheta);
 Hog_vector = zeros(1,9);
 
-[width, height] = size(cell);
+[width, height] = size(Gabs);
 
 for m = 1: width
     for n = 1: height
@@ -38,36 +38,36 @@ for m = 1: width
                 Hog_vector(1,4) = Hog_vector(1,4) + ((80 - Gtheta(m,n)) / 20)* Gabs(m,n);
                 Hog_vector(1,5) = Hog_vector(1,5) + ((Gtheta(m,n) - 60) / 20) * Gabs(m,n);
             else
-                Hog_vector(1,5) = Hog_vector(1,5) + ((120 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,5) = Hog_vector(1,5) + ((100 - Gtheta(m,n)) / 20)* Gabs(m,n);
                 Hog_vector(1,6) = Hog_vector(1,6) + ((Gtheta(m,n) - 80) / 20)* Gabs(m,n);
             end
         elseif Gtheta(m,n) >= 101 && Gtheta(m,n) <= 120
             if Gtheta(m,n) <= 110
-                Hog_vector(1,5) = Hog_vector(1,5) + ((120 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,5) = Hog_vector(1,5) + ((100 - Gtheta(m,n)) / 20)* Gabs(m,n);
                 Hog_vector(1,6) = Hog_vector(1,6) + ((Gtheta(m,n) - 80) / 20)* Gabs(m,n);
             else
-                Hog_vector(1,6) = Hog_vector(1,6) + double((140 - Gtheta(m,n)) / 20)* Gabs(m,n);
-                Hog_vector(1,7) = Hog_vector(1,7) + double((Gtheta(m,n) - 120) / 20)* Gabs(m,n);
+                Hog_vector(1,6) = Hog_vector(1,6) + double((120 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,7) = Hog_vector(1,7) + double((Gtheta(m,n) - 100) / 20)* Gabs(m,n);
             end
         elseif Gtheta(m,n) >= 121 && Gtheta(m,n) <= 140
             if Gtheta(m,n) <= 130
-                Hog_vector(1,6) = Hog_vector(1,6) + ((140 - Gtheta(m,n)) / 20)* Gabs(m,n);
-                Hog_vector(1,7) = Hog_vector(1,7) + ((Gtheta(m,n) - 120) / 20)* Gabs(m,n);
+                Hog_vector(1,6) = Hog_vector(1,6) + ((120 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,7) = Hog_vector(1,7) + ((Gtheta(m,n) - 100) / 20)* Gabs(m,n);
             else
-                Hog_vector(1,7) = Hog_vector(1,7) + ((160 - Gtheta(m,n)) / 20)* Gabs(m,n);
-                Hog_vector(1,8) = Hog_vector(1,8) + ((Gtheta(m,n) - 140) / 20)* Gabs(m,n);
+                Hog_vector(1,7) = Hog_vector(1,7) + ((140 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,8) = Hog_vector(1,8) + ((Gtheta(m,n) - 120) / 20)* Gabs(m,n);
             end
         elseif Gtheta(m,n) >= 141 && Gtheta(m,n) <= 160
             if Gtheta(m,n) <= 150
-                Hog_vector(1,7) = Hog_vector(1,7) + ((160 - Gtheta(m,n)) / 20)* Gabs(m,n);
-                Hog_vector(1,8) = Hog_vector(1,8) + ((Gtheta(m,n) - 140) / 20)* Gabs(m,n);
+                Hog_vector(1,7) = Hog_vector(1,7) + ((140 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,8) = Hog_vector(1,8) + ((Gtheta(m,n) - 120) / 20)* Gabs(m,n);
             else
-                Hog_vector(1,8) = Hog_vector(1,8) + ((180 - Gabs(m,n)) / 20)* Gabs(m,n);
-                Hog_vector(1,9) = Hog_vector(1,9) + ((Gabs(m,n) - 160) / 20)* Gabs(m,n);
+                Hog_vector(1,8) = Hog_vector(1,8) + ((160 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,9) = Hog_vector(1,9) + ((Gtheta(m,n) - 140) / 20)* Gabs(m,n);
             end
         else
-                Hog_vector(1,8) = Hog_vector(1,8) + ((180 - Gabs(m,n)) / 20)* Gabs(m,n);
-                Hog_vector(1,9) = Hog_vector(1,9) + ((Gabs(m,n) - 160) / 20)* Gabs(m,n);
+                Hog_vector(1,8) = Hog_vector(1,8) + ((160 - Gtheta(m,n)) / 20)* Gabs(m,n);
+                Hog_vector(1,9) = Hog_vector(1,9) + ((Gtheta(m,n) - 140) / 20)* Gabs(m,n);
             end
         end
     end
